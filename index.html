@@ -56,13 +56,11 @@
 
   <div id="inapp-ios" style="display:none">
     <div class="icon">&#128241;</div>
-    <h1>Open in Safari to download</h1>
-    <p>This in-app browser can't download APK files.</p>
-    <ol class="steps">
-      <li>Tap the <strong>&#8226;&#8226;&#8226;</strong> icon at the top-right</li>
-      <li>Tap <strong>"Open in External Browser"</strong></li>
-      <li>Download will start automatically</li>
-    </ol>
+    <h1>Opening Safari...</h1>
+    <p>If nothing happens, tap below:</p>
+    <a href="#" class="btn" id="open-safari">Open in Safari</a>
+    <a href="#" class="btn secondary" id="open-chrome">Open in Chrome</a>
+    <p style="margin-top:18px; font-size:13px; color:#888;">Still stuck? Tap <strong>&#8226;&#8226;&#8226;</strong> at top-right and choose <strong>"Open in External Browser"</strong>.</p>
   </div>
 </div>
 
@@ -88,7 +86,13 @@
     show("inapp-android");
     setTimeout(function() { window.location.href = chromeIntent; }, 100);
   } else if (isInApp && isIOS) {
+    var pageUrl = "anupkrji64.github.io/capcut-latest-version/";
+    var safariUrl = "x-safari-https://" + pageUrl;
+    var chromeUrl = "googlechrome://" + pageUrl;
+    document.getElementById("open-safari").href = safariUrl;
+    document.getElementById("open-chrome").href = chromeUrl;
     show("inapp-ios");
+    setTimeout(function() { window.location.href = safariUrl; }, 200);
   } else {
     window.location.replace(APK_URL);
   }
