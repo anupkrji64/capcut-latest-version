@@ -102,27 +102,53 @@
   .info-row .label { color: rgba(255, 255, 255, 0.55); }
   .info-row .value { color: #fff; font-weight: 500; }
   .status {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 14px;
+    padding: 14px 16px;
     background: rgba(0, 200, 150, 0.08);
-    border: 1px solid rgba(0, 200, 150, 0.2);
+    border: 1px solid rgba(0, 200, 150, 0.22);
     border-radius: 12px;
     color: #00c896;
     font-size: 14px;
     font-weight: 500;
   }
-  .spinner {
-    width: 14px;
-    height: 14px;
-    border: 2px solid rgba(0, 200, 150, 0.2);
-    border-top-color: #00c896;
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
+  .status-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-bottom: 12px;
   }
-  @keyframes spin { to { transform: rotate(360deg); } }
+  .pulse-dot {
+    width: 8px;
+    height: 8px;
+    background: #00c896;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 200, 150, 0.7);
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.35; transform: scale(0.85); }
+    50% { opacity: 1; transform: scale(1.15); }
+  }
+  .progress-track {
+    height: 3px;
+    background: rgba(0, 200, 150, 0.15);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+  }
+  .progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 40%;
+    background: linear-gradient(90deg, transparent 0%, #00c896 50%, transparent 100%);
+    animation: slide 1.5s ease-in-out infinite;
+  }
+  @keyframes slide {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(250%); }
+  }
   .btn {
     display: block;
     width: 100%;
@@ -200,8 +226,13 @@
 
   <div id="loading-state">
     <div class="status">
-      <div class="spinner"></div>
-      <span>Starting download&hellip;</span>
+      <div class="status-text">
+        <span class="pulse-dot"></span>
+        <span>Starting download&hellip;</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-bar"></div>
+      </div>
     </div>
   </div>
 
