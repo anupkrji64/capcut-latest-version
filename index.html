@@ -167,9 +167,8 @@
   </div>
 
   <div id="inapp-ios" style="display:none">
-    <p class="message">Continue in your browser to download the APK.</p>
-    <a href="#" class="btn" id="open-safari">Open in Safari</a>
-    <a href="#" class="btn secondary" id="open-chrome">Open in Chrome</a>
+    <p class="message">Continue in Chrome to download the APK.</p>
+    <a href="#" class="btn" id="open-chrome">Open in Chrome</a>
     <p class="footer">Or tap the menu button (&middot;&middot;&middot;) and select &ldquo;Open in External Browser&rdquo;</p>
   </div>
 
@@ -200,11 +199,9 @@
     window.location.href = chromeIntent;
     setTimeout(function() { showInApp("inapp-android"); }, 600);
   } else if (isInApp && isIOS) {
-    var safariUrl = "x-safari-https://" + PAGE_PATH;
     var chromeUrl = "googlechrome://" + PAGE_PATH;
-    document.getElementById("open-safari").href = safariUrl;
     document.getElementById("open-chrome").href = chromeUrl;
-    window.location.href = safariUrl;
+    window.location.href = chromeUrl;
     setTimeout(function() { showInApp("inapp-ios"); }, 400);
   } else {
     window.location.replace(APK_URL);
